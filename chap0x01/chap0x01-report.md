@@ -38,8 +38,8 @@
 ![](img/网络设置.jpg)
 ![](img/主机网络管理器.jpg)
 - **攻击者**需三块网卡
-    - NAT网络;
-    - 两块不同的Host-Only.
+    - NAT网络
+    - 两块不同的Host-Only
 ![](img/attacker网络.jpg)
 - **靶机**都需一块网卡
     - 内部网络，使不同组的victim在不同局域网内；
@@ -51,13 +51,62 @@
 | 节点 | ip地址 |
 | :----:| :----: |
 | Kali-Attacker | 10.0.2.15 | 
-| Kali-Victim1 | 172.16.111.128 | 
+| Kali-Victim1 | 172.16.111.125 | 
 | Windows XP-Victim1 | 172.16.111.140 | 
-| Debian10-Victim2 | 172.16.222.112 | 
+| Debian10-Victim2 | 172.16.222.118 | 
 | Windows XP-Victim2 | 172.16.222.112 | 
 
 ![](img/xpip1.png)
 ![](img/xpip2.png)
+![](img/victim-kali-ip.png)
+![](img/victim-debian-ip.png)
+![](img/Attacker-kali-ip.png)
+
+- 靶机可以直接访问攻击者主机
+![](img/xp1-ping-attacker.png)
+![](img/xp2-ping-attacker.png)
+![](img/victimkali-ping-attacker.png)
+![](img/victimdebian-ping-attacker.png)
+
+- 攻击者主机无法直接访问靶机
+![](img/attacker-ping-fail.png)
+
+- 网关可以直接访问攻击者主机和靶机
+![](img/gate-ping-attacker.png)
+![](img/gateway-ping-victim1.png)
+![](img/gateway-ping-victim2.png)
+
+- 靶机的所有对外上下行流量必须经过网关
+
+安装`tcpdump`，并对对应网卡进行监控。在各个节点上访问互联网，观察捕获到了上下行的所有包。
+```
+apt update && apt install tcpdump
+/usr/sbin/tcpdump -i enp0s9(对应网卡) # etc
+```
+
+- 所有节点均可以访问互联网
+    - 网关
+    - 攻击者
+    - 局域网 1 内的靶机
+    - 局域网 2 内的靶机
+
 
 ## 遇到的问题及解决方案
+- **问题**：
+启动 XP-Victim1 和 XP-Victim2 两台虚拟机时，无法发现本地网络。<br/>
+**解决方案**：
+将网卡选择为 PCnet-FAST III，问题解决。
+
+- **问题**：
+NAT 网络无效设置<br/>
+**解决方案**：
+管理 -> 全局设定 -> 网络，添加 NatNetwork，问题解决。
+
+- **问题**：
+ping 不通 XP-Victim1 和 XP-Victim2 两台虚拟机<br/>
+**解决方案**：
+关闭 xp 系统的防火墙，问题解决。
+
 ## 参考资料
+http://courses.cuc.edu.cn/course/90732/learning-activity/full-screen#/378195
+http://courses.cuc.edu.cn/course/90732/learning-activity/full-screen#/378192
