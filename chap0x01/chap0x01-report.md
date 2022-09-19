@@ -77,18 +77,36 @@
 ![](img/gateway-ping-victim2.png)
 
 - 靶机的所有对外上下行流量必须经过网关
-
 安装`tcpdump`，并对对应网卡进行监控。在各个节点上访问互联网，观察捕获到了上下行的所有包。
 ```
 apt update && apt install tcpdump
 /usr/sbin/tcpdump -i enp0s9(对应网卡) # etc
 ```
 
+局域网 1 内的靶机
+![](img/xp1-ping-cuc.png)
+![](img/gateway-tcpdump-xp1.png)
+![](img/kali-ping-cuc.png)
+![](img/gateway-tcpdump-kali.png)
+局域网 2 内的靶机
+![](img/xp2-ping-cuc.png)
+![](img/gateway-tcpdump-xp2.png)
+![](img/debian-ping-cuc.png)
+![](img/gateway-tcpdump-debian.png)
+
+
+
 - 所有节点均可以访问互联网
     - 网关
+    ![](img/gateway-ping-baidu.png)
     - 攻击者
+    ![](img/attacker-ping-baidu.png)
     - 局域网 1 内的靶机
+    ![](img/xp1-ping-baidu.png)
+    ![](img/kali-ping-baidu.png)
     - 局域网 2 内的靶机
+    ![](img/xp2-ping-baidu.png)
+    ![](img/debian-ping-baidu.png)
 
 
 ## 遇到的问题及解决方案
@@ -106,6 +124,12 @@ NAT 网络无效设置<br/>
 ping 不通 XP-Victim1 和 XP-Victim2 两台虚拟机<br/>
 **解决方案**：
 关闭 xp 系统的防火墙，问题解决。
+
+- **问题**：
+所有虚拟机均 ping 不通外网<br/>
+**解决方案**：
+更改任何设置都没用，从校园网切换到宿舍网，ping 成功了。。助教求解答。
+
 
 ## 参考资料
 http://courses.cuc.edu.cn/course/90732/learning-activity/full-screen#/378195
