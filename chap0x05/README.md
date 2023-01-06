@@ -141,11 +141,11 @@
 * attacker 运行代码`python3 tcp-stealth.py 172.16.111.125`，使用wireshark 抓包，查看结果与抓包结果
 
   * tcp 端口开放：可以看到 Attacker 发送 SYN 的TCP 数据包后， 80 端口进行握手回复了 SYN/ACK 数据报；Attacker 回复 RST 数据报。
-  ![](./img/null开放端口.png)
+  ![](./img/steal开放端口.png)
   ![](./img/steal开放代码.png)
   ![](./img/steal开放抓包.png)
   * tcp 端口关闭：可以看到 Attacker 发送 SYN 的TCP 数据包后， 80 端口关闭回复了 RST/ACK 数据报。
-  ![](./img/null关闭端口.png)
+  ![](./img/steal关闭端口.png)
   ![](./img/steal关闭代码.png)
   ![](./img/steal关闭抓包.png)
   * 开启防火墙：可以看到 Attacker 发送 SYN 的TCP 数据包后， 80 端口无回应。
