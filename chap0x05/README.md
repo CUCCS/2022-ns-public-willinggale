@@ -302,8 +302,8 @@
 > 相符
 
   ## 遇到的问题及解决方案
-  1. 错误开启防火墙设置
-    ```shell
+  1. 开启防火墙设置出现错误
+      ```shell
       # 错误的开启方式
       sudo systemctl start ufw
       sudo status ufw
@@ -311,7 +311,7 @@
 
       # 正确的开启方式
       sudo ufw enable
-    ``` 
+      ``` 
   
   ## 参考链接
 
