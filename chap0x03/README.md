@@ -55,3 +55,15 @@ systemctl restart tinyproxy
     * `http.request.method eq CONNECT` 查看所有 HTTPS 代理请求
     * 可以看到代理客户端向代理服务器发送 CONNECT 请求，请求包含了所访问的所有站点。
         ![](./img/connect.png)
+
+## 遇到的问题及解决方案
+1. 无法设置端口转发<br>
+解决方案：安装增强功能，端口转发要基于这个增强功能才能进行。
+2. 设置代理后主机始终无法上网<br>
+解决方案：开启了和Kali使用同一个Host-Only网络的debian虚拟机，关掉它即可。
+
+## 参考资料
+
+- [tcpdump 抓包命令使用教程](https://zhuanlan.zhihu.com/p/74812069)
+- [虚拟机配置端口转发](https://blog.csdn.net/qq_26230421/article/details/79232219)
+- [VirtualBox设置端口转发](https://blog.csdn.net/qq_32077121/article/details/125908114)
